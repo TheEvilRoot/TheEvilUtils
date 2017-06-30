@@ -94,7 +94,7 @@
 		}
 	},
 	"intervals": [
-		{"id": 0,"starts": "00:00", "ends": "00:00"},
+		{"id": 0,"starts": "22:45", "ends": "23:00"},
 		{"id": 1,"starts": "00:00", "ends": "00:00"}
 	],
 	"teachers": [
