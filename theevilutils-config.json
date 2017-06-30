@@ -1,0 +1,50 @@
+{
+	"settings": {
+		"lang": "en",
+		"enableSaturday": false, 
+		"intervalsNotification": true, 
+		"lockScreenTimer": false
+	},
+	"days": [
+		{"id": 0, "unlocalized": "monday", "en": "Monday", "ru": "Понедельник"},
+		{"id": 1, "unlocalized": "tuesday", "en": "Tuesday", "ru": "Вторник"},
+		{"id": 2, "unlocalized": "wednesday", "en": "Wednesday", "ru": "Среда"},
+		{"id": 3, "unlocalized": "thursday", "en": "Thursday", "ru": "Четверг"},
+		{"id": 4, "unlocalized": "friday", "en": "Friday", "ru": "Пятница"},
+		{"id": 5, "unlocalized": "saturday", "en": "Saturday", "ru": "Суббота"}
+	],
+	"lessons": {
+		"0": {
+			"ru": [],
+			"en": []
+		},
+		"1": {
+			"ru": [],
+			"en": []
+		},
+		"2": {
+			"ru": [],
+			"en": []
+		},
+		"3": {
+			"ru": [],
+			"en": []
+		},
+		"4": {
+			"ru": [],
+			"en": []
+		},
+		"5": {
+			"ru": [],
+			"en": []
+		}
+	},
+	"intervals": [
+		{"starts": "00:00", "ends": "00:00"},
+		{"starts": "00:00", "ends": "00:00"}
+	],
+	"teachers": [
+		{"lesson": "Физика", "name": "Хвалько Наталья Генадьевна"},
+		{"lesson": "Физика", "name": "Хвалько Наталья Генадьевна"}
+	]
+}
