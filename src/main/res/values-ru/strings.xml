@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">TheEvilUtils</string>
+    <string name="download_text">Скачивание конфига...\nПожалуйста, подождите</string>
+    <string name="profile_subtitle">Профиль</string>
+    <string name="all_lessons_title">Все уроки</string>
+    <string name="day_lessons_title">Уроки на сегодня</string>
+    <string name="invalid_day">Сегодня - не день\n</string>
+    <string name="invalid_interval">На данный момен\nничего нету</string>
+    <string name="status_lesson">Урок [%1$i] : %2$s\\n</string>
+    <string name="status_rest">Перемена [%1$i]\nДалее : %2$s</string>
+    <string name="settings_title">Настройки</string>
+    <string name="settings_lang_btn">Язык     %1$s</string>
+    <string name="settings_saturday">Суббота    %1$s</string>
+    <string name="settings_interval_notifications">Оповещение о начале/конце интервала   %1$s</string>
+    <string name="settings_lock_screen_timer">Таймер на экране блокировки  %1$s</string>
+    <string name="settings_lessons_settings">Настройка уроков</string>
+    <string name="settings_intervals_settings">Настройки временных интервалов</string>
+    <string name="settings_days_settings">Настройка дней</string>
+    <string name="settings_save">Сохранить</string>
+    <string name="settings_dismiss">Отменить</string>
+</resources>

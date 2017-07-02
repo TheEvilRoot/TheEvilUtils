@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">TheEvilUtils</string>
+    <string name="download_text">Downloading config file...\nPlesae wait...</string>
+    <string name="profile_subtitle">Profile</string>
+    <string name="all_lessons_title">All Lessons</string>
+    <string name="day_lessons_title">Lessons for today</string>
+    <string name="invalid_day">Invalid Day</string>
+    <string name="invalid_interval">No anything\n at this moment</string>
+    <string name="status_lesson">Lesson [%1$i] : %2$s\n</string>
+    <string name="status_rest">Rest [%1$i]\nNext : %2$s</string>
+    <string name="settings_title">Settings</string>
+    <string name="settings_lang_btn">Language     %1$s</string>
+    <string name="settings_saturday">Enable saturday    %1$s</string>
+    <string name="settings_interval_notifications">Interval notifications  %1$s</string>
+    <string name="settings_lock_screen_timer">LockScreen Timer  %1$s</string>
+    <string name="settings_lessons_settings">Lessons settings</string>
+    <string name="settings_intervals_settings">Interval Settings</string>
+    <string name="settings_days_settings">Days settings</string>
+    <string name="settings_save">Save Settings</string>
+    <string name="settings_dismiss">Dismiss settings</string>
+</resources>

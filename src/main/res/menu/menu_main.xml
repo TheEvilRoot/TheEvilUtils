@@ -1,0 +1,19 @@
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:context="com.theevilroot.theevilutils.MainActivity">
+    <item
+        android:id="@+id/menu_settings"
+        android:icon="@android:drawable/presence_invisible"
+        android:orderInCategory="100"
+        android:title="@string/settings_title"
+        android:visible="true"
+        app:showAsAction="never" />
+    <item
+        android:id="@+id/menu_about"
+        android:icon="@android:drawable/presence_invisible"
+        android:orderInCategory="100"
+        android:title="About"
+        android:visible="true"
+        app:showAsAction="never" />
+</menu>
