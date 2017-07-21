@@ -94,7 +94,7 @@
 		}
 	},
 	"intervals": [
-		{"id": 0,"starts": "22:45", "ends": "23:00", "type": "lesson"},
+		{"id": 0,"starts": "20:10", "ends": "20:30", "type": "lesson"},
 		{"id": 1,"starts": "00:00", "ends": "00:00", "type": "rest"}
 	],
 	"teachers": [
