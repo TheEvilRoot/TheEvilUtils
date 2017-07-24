@@ -1,5 +1,6 @@
 package com.theevilroot.theevilutils;
 
+import android.app.Activity;
 import android.app.Dialog;
 import android.content.Context;
 import android.os.AsyncTask;
@@ -20,12 +21,12 @@ import java.net.URL;
 
 public class ConfigDownloadTask extends AsyncTask<Void, Void, Void> {
 
-    private Context context;
+    private Activity activity;
     private PowerManager.WakeLock mWakeLock;
     private Dialog dialog;
 
-    public ConfigDownloadTask(Context context, Dialog dialog) {
-        this.context = context;
+    public ConfigDownloadTask(Activity activity, Dialog dialog) {
+        this.activity = activity;
         this.dialog = dialog;
     }
     @Override
@@ -39,7 +40,7 @@ public class ConfigDownloadTask extends AsyncTask<Void, Void, Void> {
             connection = (HttpURLConnection) url.openConnection();
             connection.connect();
             if (connection.getResponseCode() != HttpURLConnection.HTTP_OK) {
-                Toast.makeText(context, "Download error : " + connection.getResponseCode() + ": " + connection.getResponseMessage(), Toast.LENGTH_SHORT).show();
+                System.out.println("error");
             }
             int fileLength = connection.getContentLength();
             new File("/sdcard/theevilutils/").mkdir();
@@ -58,7 +59,7 @@ public class ConfigDownloadTask extends AsyncTask<Void, Void, Void> {
             }
         } catch (Exception e) {
             e.printStackTrace();
-            Toast.makeText(context, "An exception occurred while downloading config : "+e.getClass(), Toast.LENGTH_SHORT).show();
+            activity.runOnUiThread(() -> Toast.makeText(activity, "An exception occurred while downloading config : "+e.getClass(), Toast.LENGTH_SHORT).show());
         } finally {
             try {
                 if (output != null)
@@ -76,7 +77,7 @@ public class ConfigDownloadTask extends AsyncTask<Void, Void, Void> {
 
     @Override
     protected void onPostExecute(Void aVoid) {
-        dialog.dismiss();
+        activity.runOnUiThread(() -> dialog.dismiss());
         MainActivity.config.init();
     }
 }
