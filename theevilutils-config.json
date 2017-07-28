@@ -1,8 +1,7 @@
 {
 	"settings": {
 		"lang": "en",
-		"enableSaturday": false, 
-		"intervalsNotification": true, 
+		"enableSaturday": false,
 		"lockScreenTimer": false
 	},
 	"days": [
@@ -16,89 +15,105 @@
 	"lessons": {
 		"base":{
 			"0": {
-				"ru": ["Физика", "Блаблабла", "Блаблабла1", "Блаблабла", "КорпорацияБабла"],
-				"en": []
+				"ru": ["ПУрок1", "ПУрок2", "ПУрок3", "ПУрок4", "ПУрок5"],
+				"en": ["MLesson1","MLesson2","MLesson3","MLesson4","MLesson5"]
 			},
 			"1": {
-				"ru": ["Хрень","Хрень","Хрень","Хрень","Хрень"],
-				"en": []
+				"ru": ["ВУрок1","ВУрок2","ВУрок3","ВУрок4","ВУрок5"],
+				"en": ["TueLesson1","TueLesson2","TueLesson3","TueLesson4","TueLesson5"]
 			},
 			"2": {
-				"ru": ["Хрень","Хрень","Хрень","Хрень","Хрень","Хрень","Хрень"],
-				"en": []
+				"ru": ["СУрок1","СУрок2","СУрок3","СУрок4","СУрок5","СУрок6","СУрок7"],
+				"en": ["WLesson1","WLesson2","WLesson3","WLesson4","WLesson5","WLesson6","WLesson7"]
 			},
 			"3": {
-				"ru": ["Хрень","Хрень","Хрень","Хрень","Хрень","Хрень","Хрень","Хрень","Хрень"],
-				"en": []
+				"ru": ["ЧУрок1","ЧУрок2","ЧУрок3","ЧУрок4","ЧУрок5","ЧУрок6","ЧУрок7","ЧУрок8","ЧУрок9"],
+				"en": ["ThLesson1","ThLesson2","ThLesson3","ThLesson4","ThLesson5","ThLesson6","ThLesson7","ThLesson8","ThLesson9"]
 			},
 			"4": {
-				"ru": ["Хрень","Хрень","Хрень","Хрень","Хрень","Хрень","Хрень","Хрень"],
-				"en": []
+				"ru": ["ПУрок1","ПУрок2","ПУрок3","ПУрок4","ПУрок5","ПУрок6","ПУрок7","ПУрок8"],
+				"en": ["FLesson1","FLesson2","FLesson3","FLesson4","FLesson5","FLesson6","FLesson7", "FLesson8"]
 			},
 			"5": {
-				"ru": ["Хрень2","Хрень3","Хрень4","Хрень5","Хрень6","Хрень7","Хрень8","Хрень9"],
-				"en": []
+				"ru": ["СбУрок1","СбУрок2","СбУрок3","СбУрок4","СбУрок5","СбУрок6","СбУрок7","СбУрок8"],
+				"en": ["SLesson1","SLesson2","SLesson3","SLesson4","SLesson5","SLesson6","SLesson7", "SLesson8"]
 			}
 		},
 		"physmath":{
 			"0": {
-				"ru": [],
-				"en": []
+				"ru": ["ПУрок1", "ПУрок2", "ПУрок3", "ПУрок4", "ПУрок5"],
+				"en": ["MLesson1","MLesson2","MLesson3","MLesson4","MLesson5"]
 			},
 			"1": {
-				"ru": [],
-				"en": []
+				"ru": ["ВУрок1","ВУрок2","ВУрок3","ВУрок4","ВУрок5"],
+				"en": ["TueLesson1","TueLesson2","TueLesson3","TueLesson4","TueLesson5"]
 			},
 			"2": {
-				"ru": [],
-				"en": []
+				"ru": ["СУрок1","СУрок2","СУрок3","СУрок4","СУрок5","СУрок6","СУрок7"],
+				"en": ["WLesson1","WLesson2","WLesson3","WLesson4","WLesson5","WLesson6","WLesson7"]
 			},
 			"3": {
-				"ru": [],
-				"en": []
+				"ru": ["ЧУрок1","ЧУрок2","ЧУрок3","ЧУрок4","ЧУрок5","ЧУрок6","ЧУрок7","ЧУрок8","ЧУрок9"],
+				"en": ["ThLesson1","ThLesson2","ThLesson3","ThLesson4","ThLesson5","ThLesson6","ThLesson7","ThLesson8","ThLesson9"]
 			},
 			"4": {
-				"ru": [],
-				"en": []
+				"ru": ["ПУрок1","ПУрок2","ПУрок3","ПУрок4","ПУрок5","ПУрок6","ПУрок7","ПУрок8"],
+				"en": ["FLesson1","FLesson2","FLesson3","FLesson4","FLesson5","FLesson6","FLesson7", "FLesson8"]
 			},
 			"5": {
-				"ru": [],
-				"en": []
+				"ru": ["СбУрок1","СбУрок2","СбУрок3","СбУрок4","СбУрок5","СбУрок6","СбУрок7","СбУрок8"],
+				"en": ["SLesson1","SLesson2","SLesson3","SLesson4","SLesson5","SLesson6","SLesson7", "SLesson8"]
 			}
 		},
 		"rusEng": {
 			"0": {
-				"ru": [],
-				"en": []
+				"ru": ["ПУрок1", "ПУрок2", "ПУрок3", "ПУрок4", "ПУрок5"],
+				"en": ["MLesson1","MLesson2","MLesson3","MLesson4","MLesson5"]
 			},
 			"1": {
-				"ru": [],
-				"en": []
+				"ru": ["ВУрок1","ВУрок2","ВУрок3","ВУрок4","ВУрок5"],
+				"en": ["TueLesson1","TueLesson2","TueLesson3","TueLesson4","TueLesson5"]
 			},
 			"2": {
-				"ru": [],
-				"en": []
+				"ru": ["СУрок1","СУрок2","СУрок3","СУрок4","СУрок5","СУрок6","СУрок7"],
+				"en": ["WLesson1","WLesson2","WLesson3","WLesson4","WLesson5","WLesson6","WLesson7"]
 			},
 			"3": {
-				"ru": [],
-				"en": []
+				"ru": ["ЧУрок1","ЧУрок2","ЧУрок3","ЧУрок4","ЧУрок5","ЧУрок6","ЧУрок7","ЧУрок8","ЧУрок9"],
+				"en": ["ThLesson1","ThLesson2","ThLesson3","ThLesson4","ThLesson5","ThLesson6","ThLesson7","ThLesson8","ThLesson9"]
 			},
 			"4": {
-				"ru": [],
-				"en": []
+				"ru": ["ПУрок1","ПУрок2","ПУрок3","ПУрок4","ПУрок5","ПУрок6","ПУрок7","ПУрок8"],
+				"en": ["FLesson1","FLesson2","FLesson3","FLesson4","FLesson5","FLesson6","FLesson7", "FLesson8"]
 			},
 			"5": {
-				"ru": [],
-				"en": []
+				"ru": ["СбУрок1","СбУрок2","СбУрок3","СбУрок4","СбУрок5","СбУрок6","СбУрок7","СбУрок8"],
+				"en": ["SLesson1","SLesson2","SLesson3","SLesson4","SLesson5","SLesson6","SLesson7", "SLesson8"]
 			}
 		}
 	},
 	"intervals": [
-		{"id": 0,"starts": "20:10", "ends": "20:30", "type": "lesson"},
-		{"id": 1,"starts": "00:00", "ends": "00:00", "type": "rest"}
+		{"id": 0,"starts": "08:30", "ends": "09:15", "type": "lesson"},
+		{"id": 1,"starts": "09:30", "ends": "10:15", "type": "lesson"},
+		{"id": 2,"starts": "10:35", "ends": "11:20", "type": "lesson"},
+		{"id": 3,"starts": "11:40", "ends": "12:25", "type": "lesson"},
+		{"id": 4,"starts": "12:40", "ends": "13:25", "type": "lesson"},
+		{"id": 5,"starts": "13:35", "ends": "14:20", "type": "lesson"},
+		{"id": 6,"starts": "14:30", "ends": "15:15", "type": "lesson"},
+		{"id": 7,"starts": "15:25", "ends": "16:10", "type": "lesson"},
+
+		{"id": 0,"starts": "07:00", "ends": "08:30", "type": "rest"},
+		{"id": 1,"starts": "09:15", "ends": "09:30", "type": "rest"},
+		{"id": 2,"starts": "10:15", "ends": "10:35", "type": "rest"},
+		{"id": 3,"starts": "11:20", "ends": "11:40", "type": "rest"},
+		{"id": 4,"starts": "12:25", "ends": "12:40", "type": "rest"},
+		{"id": 5,"starts": "13:25", "ends": "13:35", "type": "rest"},
+		{"id": 6,"starts": "14:20", "ends": "11:30", "type": "rest"},
+		{"id": 7,"starts": "15:15", "ends": "15:25", "type": "rest"},
+		{"id": 8,"starts": "16:10", "ends": "17:00", "type": "rest"}
 	],
 	"teachers": [
-		{"lesson": "Физика", "name": "Хвалько Наталья Генадьевна"},
-		{"lesson": "Физика", "name": "Хвалько Наталья Генадьевна"}
+		{"lesson": "Инфофизика", "name": "Хрен С Бурга"},
+		{"lesson": "Инфофизика", "name": "Хрен с бугра"}
 	]
 }
