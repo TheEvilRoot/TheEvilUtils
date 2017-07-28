@@ -36,4 +36,6 @@ dependencies {
     compile 'com.android.support:design:26.+'
     testCompile 'junit:junit:4.12'
     compile 'com.google.code.gson:gson:2.8.1'
+    compile 'uk.co.chrisjenx:calligraphy:2.3.0'
+    compile 'com.annimon:stream:1.1.8'
 }

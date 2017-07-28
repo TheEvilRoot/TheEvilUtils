@@ -12,16 +12,11 @@
     <string name="settings_title">Settings</string>
     <string name="settings_lang_btn">Language</string>
     <string name="settings_saturday">Enable saturday</string>
-    <string name="settings_interval_notifications">Interval notifications</string>
     <string name="settings_lock_screen_timer">LockScreen Timer</string>
-    <string name="settings_lessons_settings">Lessons settings</string>
-    <string name="settings_intervals_settings">Interval Settings</string>
-    <string name="settings_days_settings">Days settings</string>
-    <string name="settings_save">Save Settings</string>
-    <string name="settings_dismiss">Dismiss settings</string>
-    <string name="true_value">On</string>
-    <string name="false_value">Off</string>
-    <string name="label_time_left">Time left</string>
-    <string name="label_time">Current time</string>
-    <string name="label_info">Information</string>
+    <string name="label_time_left">Осталось</string>
+    <string name="label_time">Сейчас</string>
+    <string name="label_info">Информация</string>
+    <string name="settings_subtitle_changed">Has changed</string>
+    <string name="settings_lessons_btn">Lessons settings</string>
+    <string name="lessons_edit_title">Edit lessons</string>
 </resources>

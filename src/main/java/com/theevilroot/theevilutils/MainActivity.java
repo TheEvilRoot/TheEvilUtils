@@ -4,6 +4,7 @@ import android.content.Intent;
 import android.content.res.Configuration;
 import android.content.res.Resources;
 import android.graphics.Color;
+import android.graphics.Typeface;
 import android.graphics.drawable.ColorDrawable;
 import android.os.Build;
 import android.os.Bundle;
@@ -41,18 +42,22 @@ import java.util.Locale;
 import java.util.concurrent.CountDownLatch;
 import java.util.concurrent.TimeUnit;
 
+import uk.co.chrisjenx.calligraphy.CalligraphyConfig;
+
 public class MainActivity extends AppCompatActivity {
 
     public enum Profile {
         BASE("Base", "База"), PHYSMATH("Phys-Math", "Физ.Мат"), RUSENG("Rus-Eng", "Русск.Англ");
         private String ru, en;
+
         Profile(String en, String ru) {
             this.ru = ru;
             this.en = en;
         }
-        public String getName(String lang){
-            if(lang.equals("ru")) return ru;
-            if(lang.equals("en")) return en;
+
+        public String getName(String lang) {
+            if (lang.equals("ru")) return ru;
+            if (lang.equals("en")) return en;
             return name();
         }
     }
@@ -80,19 +85,24 @@ public class MainActivity extends AppCompatActivity {
     public static final SimpleDateFormat ms = new SimpleDateFormat("mm:ss");
 
     public static final CountDownLatch lock = new CountDownLatch(1);
+    public static MainActivity activity;
 
-    float x1,x2,y1,y2;
+    public static Typeface typeface;
+
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.content_main);
+        activity = this;
         toolbar = (Toolbar) findViewById(R.id.toolbar);
         this.setSupportActionBar(toolbar);
         this.getSupportActionBar().setDisplayShowTitleEnabled(false);
         this.getSupportActionBar().setDisplayUseLogoEnabled(false);
         this.getWindow().setStatusBarColor(ContextCompat.getColor(this, R.color.colorPrimaryDark));
         try {
+            typeface = Typeface.createFromAsset(this.getAssets(), "MagdaClean.ttf");
             fab = (FloatingActionButton) findViewById(R.id.fab);
             time = (TextView) findViewById(R.id.time);
             status = (TextView) findViewById(R.id.status);
@@ -102,10 +112,12 @@ public class MainActivity extends AppCompatActivity {
             toolbar_title = (TextView) findViewById(R.id.toolbar_title);
             toolbar_subtitle = (TextView) findViewById(R.id.toolbar_subtitle);
             debug_status = (TextView) findViewById(R.id.debug_status);
+            time.setTypeface(typeface);
+            lefttime.setTypeface(typeface);
             fab.setOnClickListener((e) -> {
                 String ret = getString(R.string.day_lessons_title) + ":\n";
                 Day cur = getCurrentDay();
-                if(cur == null)
+                if (cur == null)
                     return;
                 ret += "\t" + cur.name + ":\n";
                 ret += MiscUtils.formatLessons(cur.lessons.get(current_profile));
@@ -113,19 +125,21 @@ public class MainActivity extends AppCompatActivity {
             });
             fab.setOnLongClickListener(view -> {
                 String ret = getString(R.string.all_lessons_title) + ":\n";
-                for (Day d : days){ ret += String.format("\t%s:\n %s", d.name, MiscUtils.formatLessons(d.lessons.get(current_profile))); }
+                for (Day d : days) {
+                    ret += String.format("\t%s:\n %s", d.name, MiscUtils.formatLessons(d.lessons.get(current_profile)));
+                }
                 timetable_dialog.setMessage(ret).create().show();
                 return true;
             });
             toolbar.setOnLongClickListener(view -> {
-                if(current_profile == Profile.BASE)
+                if (current_profile == Profile.BASE)
                     initProfile(Profile.PHYSMATH);
-                else if(current_profile == Profile.PHYSMATH)
+                else if (current_profile == Profile.PHYSMATH)
                     initProfile(Profile.RUSENG);
                 else initProfile(Profile.BASE);
                 return false;
             });
-           config = new Config(this, config_path);
+            config = new Config(this, config_path);
 
             Runnable tick = () -> {
                 try {
@@ -136,16 +150,16 @@ public class MainActivity extends AppCompatActivity {
                     if (currentDay == null) {
                         status.setText(getString(R.string.invalid_day));
                         lefttime.setText("00:00");
-                    }else {
+                    } else {
                         if (currentInterval == null) {
                             status.setText(R.string.invalid_interval);
                             lefttime.setText("00:00");
-                        }else {
+                        } else {
                             if (currentInterval.type == TimeInterval.IntervalType.LESSON) {
                                 status.setText(getString(R.string.status_lesson, (currentInterval.id + 1), currentDay.lessons.get(current_profile).get(currentInterval.id)));
                                 lefttime.setText(ms.format(getLeftTime(currentInterval)));
                             } else {
-                                status.setText(getString(R.string.status_rest,currentInterval.id ,(currentDay.lessons.get(current_profile).size() + 1 < currentInterval.id + 1 ? currentDay.lessons.get(current_profile).get(currentInterval.id) : "Ничего =3")));
+                                status.setText(getString(R.string.status_rest, currentInterval.id, (currentDay.lessons.get(current_profile).size() + 1 < currentInterval.id + 1 ? currentDay.lessons.get(current_profile).get(currentInterval.id) : "Ничего =3")));
                                 lefttime.setText(ms.format(getLeftTime(currentInterval)));
                             }
                         }
@@ -190,18 +204,18 @@ public class MainActivity extends AppCompatActivity {
                 try {
                     initThread.join();
                     initProfile(Profile.BASE);
-                    while(true){
+                    while (true) {
                         runOnUiThread(tick);
                         TimeUnit.SECONDS.sleep(1);
                     }
-                }catch (Throwable t){
+                } catch (Throwable t) {
                     t.printStackTrace();
                 }
             });
 
             thr.start();
 
-        }catch (Throwable t){
+        } catch (Throwable t) {
             t.printStackTrace();
         }
     }
@@ -215,35 +229,36 @@ public class MainActivity extends AppCompatActivity {
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         int id = item.getItemId();
-        if(id == R.id.menu_settings) {
+        if (id == R.id.menu_settings) {
             try {
                 Intent intent = new Intent(this, SettingsActivity.class);
                 startActivity(intent);
-            }catch (Throwable t){
+            } catch (Throwable t) {
                 t.printStackTrace();
             }
         }
         return super.onOptionsItemSelected(item);
     }
 
-    public static Day getCurrentDay(){
-        for(Day d : days) {
-            if(d.unlocalizedName.equals(new SimpleDateFormat("EEEE", Locale.ENGLISH).format(new Date()).toLowerCase())) return d;
+    public static Day getCurrentDay() {
+        for (Day d : days) {
+            if (d.unlocalizedName.equals(new SimpleDateFormat("EEEE", Locale.ENGLISH).format(new Date()).toLowerCase()))
+                return d;
         }
         return null;
     }
 
-    public static TimeInterval getCurrentInterval(){
+    public static TimeInterval getCurrentInterval() {
         long cur = new Date().getTime();
-        for(TimeInterval i : timeIntervals) {
-            if(cur >= i.starts && cur <= i.ends)
+        for (TimeInterval i : timeIntervals) {
+            if (cur >= i.starts && cur <= i.ends)
                 return i;
         }
         return null;
     }
 
     public static long getLeftTime(TimeInterval ti) {
-        return ti.ends - new Date().getTime() ;
+        return ti.ends - new Date().getTime();
     }
 
     public void initProfile(Profile prof) {

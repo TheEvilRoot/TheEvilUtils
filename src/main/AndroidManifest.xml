@@ -26,6 +26,11 @@
             android:label="@string/settings_title"
             android:theme="@style/Theme.AppCompat.NoActionBar">
         </activity>
+        <activity
+            android:name=".EditLessonsActivity"
+            android:label="@string/lessons_edit_title"
+            android:theme="@style/Theme.AppCompat.NoActionBar">
+        </activity>
     </application>
 
 </manifest>

@@ -6,7 +6,7 @@
     android:orientation="vertical"
     xmlns:android="http://schemas.android.com/apk/res/android"
     tools:layout_editor_absoluteY="81dp"
-    tools:layout_editor_absoluteX="0dp">
+    tools:layout_editor_absoluteX="0dp" android:paddingTop="20px" android:paddingBottom="20px">
 
     <TextView xmlns:android="http://schemas.android.com/apk/res/android"
         android:id="@+id/settings_enrty_label"
@@ -21,7 +21,7 @@
         android:text="TextLabel"
         android:textAllCaps="true"
         android:textAppearance="?android:attr/textAppearanceLarge"
-        android:textColor="#000"
+        android:textColor="@color/colorText"
         android:textSize="14dp"
         app:layout_constraintLeft_toRightOf="@+id/settings_enrty_icon"
         tools:layout_editor_absoluteY="8dp" />
@@ -36,7 +36,7 @@
         android:paddingTop="0dp"
         android:text="TextValue"
         android:textAllCaps="true"
-        android:textColor="#000"
+        android:textColor="@color/colorText"
         android:textSize="14dp"
         tools:layout_editor_absoluteY="8dp"
         android:layout_marginRight="8dp"
@@ -51,5 +51,9 @@
         android:layout_height="wrap_content"
         app:srcCompat="@android:drawable/btn_dialog"
         tools:layout_editor_absoluteY="1dp"
-        tools:layout_editor_absoluteX="6dp" />
+        tools:layout_editor_absoluteX="6dp"
+        android:paddingLeft="10px"
+        android:adjustViewBounds="true"
+        android:maxWidth="64px"
+        android:maxHeight="64px"/>
 </android.support.constraint.ConstraintLayout>

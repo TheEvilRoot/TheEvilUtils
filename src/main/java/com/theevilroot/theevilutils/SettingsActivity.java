@@ -1,10 +1,10 @@
 package com.theevilroot.theevilutils;
 
+import android.app.AlertDialog;
 import android.app.Dialog;
 import android.content.Context;
-import android.media.audiofx.BassBoost;
+import android.content.Intent;
 import android.os.Bundle;
-import android.os.PersistableBundle;
 import android.support.annotation.DrawableRes;
 import android.support.annotation.LayoutRes;
 import android.support.annotation.NonNull;
@@ -12,28 +12,25 @@ import android.support.annotation.Nullable;
 import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.google.gson.GsonBuilder;
-import com.google.gson.JsonObject;
 import com.google.gson.JsonPrimitive;
 
 import java.io.FileWriter;
-import java.io.IOException;
-import java.nio.file.Files;
-import java.nio.file.Paths;
-import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
+import java.util.stream.Collectors;
+
+import uk.co.chrisjenx.calligraphy.CalligraphyConfig;
 
 
 /**
@@ -45,51 +42,93 @@ public class SettingsActivity extends AppCompatActivity {
     ListView list;
     Button save_button;
     Toolbar toolbar;
+    TextView toolbar_title, toolbar_subtitle;
+    Button reset;
+    ImageView toolbar_icon;
 
     Config _config;
 
-    List<SettingsEntry> entries;
-
     SettingsArrayAdapter adapter;
+
+    boolean changed;
 
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.settings_main_layout);
-        entries = new ArrayList<>();
         _config = MainActivity.config;
         toolbar = (Toolbar) findViewById(R.id.toolbar);
         this.setSupportActionBar(toolbar);
         this.getSupportActionBar().setDisplayShowTitleEnabled(false);
         this.getSupportActionBar().setDisplayUseLogoEnabled(false);
         this.getWindow().setStatusBarColor(ContextCompat.getColor(this, R.color.colorPrimaryDark));
+        toolbar_title = (TextView) findViewById(R.id.toolbar_title);
+        toolbar_subtitle = (TextView) findViewById(R.id.toolbar_subtitle);
+        toolbar_icon = (ImageView) findViewById(R.id.imageView);
+        toolbar_icon.setOnClickListener(view -> {
+            changed = false;
+            this.finish();
+        });
         list = (ListView) findViewById(R.id.settings_list);
-        entries.addAll(Arrays.asList(
-                new SettingsEntry(getString(R.string.settings_lang_btn), _config.getFromCategory(Config.Category.SETTINGS, "lang").getAsString(), android.R.drawable.ic_dialog_info, (adapterView, view, i, l) -> {
-                    if(_config.getFromCategory(Config.Category.SETTINGS, "lang").getAsString().equals("ru")) {
-                        _config.setValue(Config.Category.SETTINGS, "lang", new JsonPrimitive("en"));
-                    }else{
-                        _config.setValue(Config.Category.SETTINGS, "lang", new JsonPrimitive("ru"));
-                    }
-                }),
-                new SettingsEntry(getString(R.string.settings_saturday), Boolean.toString(_config.getFromCategory(Config.Category.SETTINGS, "enableSaturday").getAsBoolean()), android.R.drawable.btn_dialog, (adapterView, view, i, l) -> {
-
-                }),
-                new SettingsEntry(getString(R.string.settings_lock_screen_timer), Boolean.toString(_config.getFromCategory(Config.Category.SETTINGS, "lockScreenTimer").getAsBoolean()), android.R.drawable.ic_dialog_info, (adapterView, view, i, l) -> {
-
-                })
+        list.setDivider(null);
+        list.setDividerHeight(0);
+        adapter = new SettingsArrayAdapter(this, R.layout.setting_entry, Arrays.asList(
+                new SettingsEntry<>(getString(R.string.settings_lang_btn), _config.getFromCategory(Config.Category.SETTINGS, "lang").getAsString(), _config.getFromCategory(Config.Category.SETTINGS, "lang").getAsString().equals("ru") ? R.drawable.ru : R.drawable.en, (a, index, entry) -> {
+                    _config.setValue(Config.Category.SETTINGS, "lang", new JsonPrimitive(entry.value.equals("ru") ? "en" : "ru"));
+                    a.objects.set(index, entry.setValue(entry.value.equals("ru") ? "en" : "ru").setIcon(entry.value.equals("ru") ? R.drawable.ru : R.drawable.en));
+                }, true),
+                new SettingsEntry<>(getString(R.string.settings_saturday), _config.getFromCategory(Config.Category.SETTINGS, "enableSaturday").getAsBoolean(), _config.getFromCategory(Config.Category.SETTINGS, "enableSaturday").getAsBoolean() ? R.drawable.calendar_on : R.drawable.calendar_off, (a, index, entry) -> {
+                    _config.setValue(Config.Category.SETTINGS, "enableSaturday", new JsonPrimitive(!entry.value));
+                    a.objects.set(index, entry.setValue(!entry.value).setIcon(entry.value ? R.drawable.calendar_on : R.drawable.calendar_off));
+                }, true),
+                new SettingsEntry<>(getString(R.string.settings_lock_screen_timer), _config.getFromCategory(Config.Category.SETTINGS, "lockScreenTimer").getAsBoolean(), _config.getFromCategory(Config.Category.SETTINGS, "lockScreenTimer").getAsBoolean() ? R.drawable.timer_on : R.drawable.timer_off, (a, index, entry) -> {
+                    _config.setValue(Config.Category.SETTINGS, "lockScreenTimer", new JsonPrimitive(!entry.value));
+                    a.objects.set(index, entry.setValue(!entry.value).setIcon(entry.value ? R.drawable.timer_on : R.drawable.timer_off));
+                }, true),
+                new SettingsEntry<String>(getString(R.string.settings_lessons_btn), "❯", R.drawable.lessons, (adapter1, index, entry) -> {
+                    AlertDialog.Builder builder = new AlertDialog.Builder(this);
+                    builder.setIcon(R.drawable.ic_launcher);
+                    builder.setAdapter(new ArrayAdapter<>(this, android.R.layout.simple_list_item_1, Arrays.asList(MainActivity.Profile.BASE.getName(MainActivity.lang), MainActivity.Profile.PHYSMATH.getName(MainActivity.lang), MainActivity.Profile.RUSENG.getName(MainActivity.lang))), (dialogInterface, i) -> {
+                        switch (i)  {
+                            case 0: showEditActivity(MainActivity.Profile.BASE); break;
+                            case 1: showEditActivity(MainActivity.Profile.PHYSMATH); break;
+                            case 2: showEditActivity(MainActivity.Profile.RUSENG); break;
+                            default: return;
+                        }
+                        changed = false;
+                    });
+                    builder.create().show();
+                }, false)
         ));
-        adapter = new SettingsArrayAdapter(this, R.layout.setting_entry, entries);
         list.setAdapter(adapter);
         list.setOnItemClickListener((adapterView, view, i, l) -> {
-            try {
-                entries.get(i).listener.onItemClick(adapterView, view, i, l);
-                adapter.setNotifyOnChange(true);
-                adapter.notifyDataSetChanged();
-            }catch (IndexOutOfBoundsException e){
-                // TODO
+            SettingsEntry entry = adapter.getItem(i);
+            entry.action.action(adapter, i, entry);
+            adapter.notifyDataSetChanged();
+            if(entry.change) {
+                toolbar_subtitle.setText(getString(R.string.settings_subtitle_changed) + " : " + entry.label);
+                changed = true;
             }
         });
+    }
+
+    public void showEditActivity(MainActivity.Profile editfor) {
+        Intent intent = new Intent(this, EditLessonsActivity.class);
+        intent.putExtra("profile", editfor.name());
+        startActivity(intent);
+    }
+
+    @Override
+    protected void onStop() {
+        super.onStop();
+        if (changed) {
+            try (FileWriter writer = new FileWriter(_config.configfile, false)) {
+                writer.write(new GsonBuilder().setPrettyPrinting().create().toJson(_config.getConfigObject()));
+            } catch (Exception e) {
+                Log.e(e.getClass().getName(), e.getLocalizedMessage());
+            }
+            MainActivity.activity.recreate();
+        }
     }
 
     public class SettingsArrayAdapter extends ArrayAdapter<SettingsEntry> {
@@ -110,29 +149,37 @@ public class SettingsActivity extends AppCompatActivity {
             LayoutInflater inflater = (LayoutInflater) context
                     .getSystemService(Context.LAYOUT_INFLATER_SERVICE);
             View rowView = inflater.inflate(R.layout.setting_entry, parent, false);
-            TextView label = (TextView) rowView.findViewById(R.id.settings_enrty_label);
-            TextView value = (TextView) rowView.findViewById(R.id.settings_entry_value);
-            ImageView icon = (ImageView) rowView.findViewById(R.id.settings_enrty_icon);
+            TextView label = rowView.findViewById(R.id.settings_enrty_label);
+            TextView value = rowView.findViewById(R.id.settings_entry_value);
+            ImageView icon = rowView.findViewById(R.id.settings_enrty_icon);
             label.setText(objects.get(position).label);
-            value.setText(""+objects.get(position).value);
+            value.setText("" + objects.get(position).value);
             icon.setImageDrawable(SettingsActivity.this.getDrawable(objects.get(position).resource));
             return rowView;
         }
     }
 
-    public static class SettingsEntry {
-        public String label, value;
-        public AdapterView.OnItemClickListener listener;
-        @DrawableRes
-        public int resource;
-        public SettingsEntry(String label, String value, int resource, AdapterView.OnItemClickListener onclick) {
-            this.label = label;
-            this.value = value;
-            this.resource = resource;
-            this.listener = onclick;
+    public static class SettingsEntry<T> {
+        interface Action<T> {
+            void action(SettingsArrayAdapter adapter, int index, SettingsEntry<T> entry);
         }
 
-        public SettingsEntry setValue(String value) {
+        public String label;
+        public Action action;
+        public T value;
+        @DrawableRes
+        public int resource;
+        public boolean change;
+
+        public SettingsEntry(String label, T value, int resource, Action<T> action, boolean change) {
+            this.label = label;
+            this.value = value;
+            this.action = action;
+            this.resource = resource;
+            this.change = change;
+        }
+
+        public SettingsEntry setValue(T value) {
             this.value = value;
             return this;
         }
@@ -142,10 +189,15 @@ public class SettingsActivity extends AppCompatActivity {
             return this;
         }
 
-        public SettingsEntry setIcon(@DrawableRes int resource){
+        public SettingsEntry setIcon(@DrawableRes int resource) {
             this.resource = resource;
             return this;
         }
     }
 
+    @Override
+    protected void onPause() {
+        super.onPause();
+        this.finish();
+    }
 }
