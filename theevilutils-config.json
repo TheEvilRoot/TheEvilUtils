@@ -108,7 +108,7 @@
 		{"id": 3,"starts": "11:20", "ends": "11:40", "type": "rest"},
 		{"id": 4,"starts": "12:25", "ends": "12:40", "type": "rest"},
 		{"id": 5,"starts": "13:25", "ends": "13:35", "type": "rest"},
-		{"id": 6,"starts": "14:20", "ends": "11:30", "type": "rest"},
+		{"id": 6,"starts": "14:20", "ends": "14:30", "type": "rest"},
 		{"id": 7,"starts": "15:15", "ends": "15:25", "type": "rest"},
 		{"id": 8,"starts": "16:10", "ends": "17:00", "type": "rest"}
 	],
