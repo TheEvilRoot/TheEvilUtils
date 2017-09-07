@@ -101,8 +101,8 @@
 		{"id": 5,"starts": "13:35", "ends": "14:20", "type": "lesson"},
 		{"id": 6,"starts": "14:30", "ends": "15:15", "type": "lesson"},
 		{"id": 7,"starts": "15:25", "ends": "16:10", "type": "lesson"},
-		{"id": 20,"starts": "21:30", "ends": "21:35", "type": "lesson"},
-		{"id": 22,"starts": "21:40", "ends": "21:45", "type": "lesson"},
+		{"id": 20,"starts": "15:20", "ends": "15:25", "type": "lesson"},
+		{"id": 22,"starts": "15:30", "ends": "15:35", "type": "lesson"},
 		
 		{"id": 0,"starts": "07:00", "ends": "08:30", "type": "rest"},
 		{"id": 1,"starts": "09:15", "ends": "09:30", "type": "rest"},
@@ -113,7 +113,7 @@
 		{"id": 6,"starts": "14:20", "ends": "14:30", "type": "rest"},
 		{"id": 7,"starts": "15:15", "ends": "15:25", "type": "rest"},
 		{"id": 8,"starts": "16:10", "ends": "17:00", "type": "rest"},
-		{"id": 21,"starts": "21:35", "ends": "21:40", "type": "rest"},
+		{"id": 21,"starts": "15:25", "ends": "15:30", "type": "rest"},
 	],
 	"teachers": [
 		{"lesson": "Инфофизика", "name": "Хрен С Бурга"},
