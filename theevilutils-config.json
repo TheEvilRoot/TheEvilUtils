@@ -113,7 +113,7 @@
 		{"id": 6,"starts": "14:20", "ends": "14:30", "type": "rest"},
 		{"id": 7,"starts": "15:15", "ends": "15:25", "type": "rest"},
 		{"id": 8,"starts": "16:10", "ends": "17:00", "type": "rest"},
-		{"id": 21,"starts": "15:25", "ends": "15:30", "type": "rest"},
+		{"id": 21,"starts": "15:25", "ends": "15:30", "type": "rest"}
 	],
 	"teachers": [
 		{"lesson": "Инфофизика", "name": "Хрен С Бурга"},
